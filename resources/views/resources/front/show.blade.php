@@ -1,0 +1,586 @@
+@extends('layouts.main2_frontend')
+
+@section('title')
+@endsection
+
+@section('content')
+
+ <section class="faq-section fix section-padding">
+        <div class="container">
+            <div class="faq-wrapper">
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <div class="faq-left">
+                            <ul class="nav" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a href="#trust" data-bs-toggle="tab" class="nav-link active" aria-selected="true"
+                                        role="tab">
+                                        Question Group 1
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a href="#general" data-bs-toggle="tab" class="nav-link" aria-selected="false"
+                                        role="tab" tabindex="-1">
+                                        Question Group 2
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a href="#programs" data-bs-toggle="tab" class="nav-link" aria-selected="false"
+                                        role="tab" tabindex="-1">
+                                        Question Group 3
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a href="#kindergarten" data-bs-toggle="tab" class="nav-link" aria-selected="false"
+                                        role="tab" tabindex="-1">
+                                        Question Group 4 </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="tab-content">
+                            <div id="trust" class="tab-pane fade show active" role="tabpanel">
+                                <div class="faq-content">
+                                    <div class="faq-accordion">
+                                        <div class="accordion" id="accordion">
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq1"
+                                                        aria-expanded="true" aria-controls="faq1">
+                                                        What skills will my child learn by using kinder?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq1" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq2"
+                                                        aria-expanded="false" aria-controls="faq2">
+                                                        What is included in your services?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq2" class="accordion-collapse show"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq3"
+                                                        aria-expanded="false" aria-controls="faq3">
+                                                        What type of company is measured?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq3" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq4"
+                                                        aria-expanded="false" aria-controls="faq4">
+                                                        Are the tours included with meals?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq4" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq5"
+                                                        aria-expanded="false" aria-controls="faq5">
+                                                        What Activities are Done in the Development?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq5" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq6"
+                                                        aria-expanded="false" aria-controls="faq6">
+                                                        What ages is Prodigies designed for?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq6" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="general" class="tab-pane fade" role="tabpanel">
+                                <div class="faq-content">
+                                    <div class="faq-accordion">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq11"
+                                                        aria-expanded="true" aria-controls="faq11">
+                                                        What skills will my child learn by using kinder?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq11" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq22"
+                                                        aria-expanded="false" aria-controls="faq22">
+                                                        What is included in your services?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq22" class="accordion-collapse show"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq33"
+                                                        aria-expanded="false" aria-controls="faq33">
+                                                        What type of company is measured?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq33" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq44"
+                                                        aria-expanded="false" aria-controls="faq44">
+                                                        Are the tours included with meals?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq44" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq55"
+                                                        aria-expanded="false" aria-controls="faq55">
+                                                        What Activities are Done in the Development?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq55" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq66"
+                                                        aria-expanded="false" aria-controls="faq66">
+                                                        What ages is Prodigies designed for?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq66" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="programs" class="tab-pane fade" role="tabpanel">
+                                <div class="faq-content">
+                                    <div class="faq-accordion">
+                                        <div class="accordion" id="accordion3">
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq111"
+                                                        aria-expanded="true" aria-controls="faq111">
+                                                        What skills will my child learn by using kinder?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq111" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq222"
+                                                        aria-expanded="false" aria-controls="faq222">
+                                                        What is included in your services?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq222" class="accordion-collapse show"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq333"
+                                                        aria-expanded="false" aria-controls="faq333">
+                                                        What type of company is measured?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq333" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq444"
+                                                        aria-expanded="false" aria-controls="faq444">
+                                                        Are the tours included with meals?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq444" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq555"
+                                                        aria-expanded="false" aria-controls="faq555">
+                                                        What Activities are Done in the Development?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq555" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq666"
+                                                        aria-expanded="false" aria-controls="faq666">
+                                                        What ages is Prodigies designed for?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq666" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="kindergarten" class="tab-pane fade" role="tabpanel">
+                                <div class="faq-content">
+                                    <div class="faq-accordion">
+                                        <div class="accordion" id="accordion4">
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq1111"
+                                                        aria-expanded="true" aria-controls="faq1111">
+                                                        What skills will my child learn by using kinder?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq1111" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq2222"
+                                                        aria-expanded="false" aria-controls="faq2222">
+                                                        What is included in your services?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq2222" class="accordion-collapse show"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq3333"
+                                                        aria-expanded="false" aria-controls="faq3333">
+                                                        What type of company is measured?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq3333" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq4444"
+                                                        aria-expanded="false" aria-controls="faq4444">
+                                                        Are the tours included with meals?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq4444" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item mb-3">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq5555"
+                                                        aria-expanded="false" aria-controls="faq5555">
+                                                        What Activities are Done in the Development?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq5555" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#faq6666"
+                                                        aria-expanded="false" aria-controls="faq6666">
+                                                        What ages is Prodigies designed for?
+                                                    </button>
+                                                </h5>
+                                                <div id="faq6666" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion">
+                                                    <div class="accordion-body">
+                                                        Nunc tincidunt cursus lectus ac semper. Aenean ullamcorper quis
+                                                        arcu molestie consequat. Interdum et malesuada fames ac ante
+                                                        ipsum primis in faucibus. Ut nec lobortis elit, eu ultrices
+                                                        justo. Fusce auctor erat est, non fringilla nibh tempus quis.
+                                                        Aenean dignissim turpis ut interdum interdum. Nam molestie sed
+                                                        ex non tempus. Donec sodales aliquam orci non imperdiet. Quisque
+                                                        tempus dolor id nisi blandit tempor ut id lacus.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@endsection
