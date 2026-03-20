@@ -52,8 +52,8 @@
                     <div class="footer-widget">
                         <h4>Contact Info</h4>
                         <ul class="contact-info">
-                            <li><i class="fas fa-map-marker-alt"></i> 123 Education Street, Nairobi</li>
-                            <li><i class="fas fa-phone"></i> +254 700 123 456</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Salt Restaurant, Drive 41 Oysterbay DSM</li>
+                            <li><i class="fas fa-phone"></i> +255 721 768 627</li>
                             <li><i class="fas fa-envelope"></i> info@somaconnect.com</li>
                         </ul>
                     </div>
