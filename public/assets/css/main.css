@@ -4769,7 +4769,7 @@ span {
 .preloader .animation-preloader .txt-loading {
   font: bold 5em "Inter", sans-serif, "Inter", sans-serif;
   text-align: center;
-  user-select: none;
+  /* user-select: none; */
 }
 @media (max-width: 767px) {
   .preloader .animation-preloader .txt-loading {

@@ -44,37 +44,46 @@ class ResourceController extends Controller
     public function materials1()
     {
         $f1TextBooks = Resource::where('grade_level', '1')->get();
-        return view('materials.materials1', compact('f1TextBooks'));
+        $formNumber = $f1TextBooks->pluck('grade_level')->first();
+        return view('materials.materials1', compact('f1TextBooks', 'formNumber'));
     }
 
     public function materials2()
     {
         $f2TextBooks = Resource::where('grade_level', '2')->get();
-        return view('materials.materials2', compact('f2TextBooks'));
+        $formNumber = $f2TextBooks->pluck('grade_level')->first();
+        return view('materials.materials2', compact('f2TextBooks', 'formNumber'));
     }
 
     public function materials3()
     {
         $f3TextBooks = Resource::where('grade_level', '3')->get();
-        return view('materials.materials3', compact('f3TextBooks'));
+        $formNumber = $f3TextBooks->pluck('grade_level')->first();
+
+        return view('materials.materials3', compact('f3TextBooks', 'formNumber'));
     }
 
     public function materials4()
     {
         $f4TextBooks = Resource::where('grade_level', '4')->get();
-        return view('materials.materials4', compact('f4TextBooks'));
+        $formNumber = $f4TextBooks->pluck('grade_level')->first();
+
+        return view('materials.materials4', compact('f4TextBooks', 'formNumber'));
     }
 
     public function materials5()
     {
         $f5TextBooks = Resource::where('grade_level', '5')->get();
-        return view('materials.materials5', compact('f5TextBooks'));
+        $formNumber = $f5TextBooks->pluck('grade_level')->first();
+        return view('materials.materials5', compact('f5TextBooks', 'formNumber'));
     }
 
     public function materials6()
     {
         $f6TextBooks = Resource::where('grade_level', '6')->get();
-        return view('materials.materials6', compact('f6TextBooks'));
+        $formNumber = $f6TextBooks->pluck('grade_level')->first();
+
+        return view('materials.materials6', compact('f6TextBooks', 'formNumber'));
     }
 
     public function pastpapers()

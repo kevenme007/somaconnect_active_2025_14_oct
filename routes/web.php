@@ -266,6 +266,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/maktaba-connect', [TutorController::class, 'index'])->name('tutor.index');
     Route::post('/maktaba-connect-modal', [TutorController::class, 'askModal'])->name('tutor.modal');
     Route::post('/tutor/ask', [TutorController::class, 'ask'])->name('tutor.ask');
+    Route::get('/check-models', [TutorController::class, 'checkAvailableModels'])->name('check.models');
 
     Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
     Route::get('/chat/{userId}', [ChatController::class, 'show'])->name('chat.show');
