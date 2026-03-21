@@ -178,7 +178,7 @@
             </div>
 
             <!-- Slide 7 -->
-            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg4.jpg');">
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg4.JPG');">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7">
@@ -197,7 +197,7 @@
             </div>
 
             <!-- Slide 8 -->
-            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg5.jpg');">
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg5.JPG');">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7">
@@ -216,7 +216,7 @@
             </div>
 
             <!-- Slide 9 -->
-            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg6.jpg');">
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg6.JPG');">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7">
