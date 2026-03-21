@@ -37,9 +37,13 @@ use App\Http\Controllers\ReadingHistoryController;
 Route::get('/', function () {
 
     $textBooks = Resource::where('resource_type', 'Textbook')
-        ->where('status', 'approved')->get();
+        ->where('status', 'approved')
+        ->take(10)
+        ->get();
     $pastpapers         = Resource::where('resource_type', 'PastPaper')
-        ->where('status', 'approved')->get();
+        ->where('status', 'approved')
+        ->take(10)
+        ->get();
     $mostReadResources = Resource::selectRaw('resources.id, resources.title, resources.description, resources.author, image_path , subject_id, resources.grade_level, COUNT(resource_interactions.id) as views')
         ->join('resource_interactions', 'resources.id', '=', 'resource_interactions.resource_id')
         ->where('resource_interactions.interaction_type', 'view')
@@ -60,10 +64,12 @@ Route::get('/', function () {
 
     $referenceResources = Resource::where('resource_type', 'ReferenceBook')
     ->where('status', 'approved')
+    ->take(10)
     ->get();
 
     $referenceBooks = Resource::where('resource_type', 'ReferenceBook')
     ->where('status', 'approved')
+    ->take(10)
     ->get();
 
     $counts = DB::table('resources')

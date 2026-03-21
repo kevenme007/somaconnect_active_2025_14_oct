@@ -5,6 +5,64 @@
     <section class="hero-section">
         <div class="hero-slider">
             <!-- Slide 1 -->
+            {{-- <div class="hero-slide" style="background-image: url('/assets3/images/slider/slider1-home1.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Featured Learning Resources</span>
+                                <h1 class="hero-title">Study Smarter, <span>Not Harder</span></h1>
+                                <p class="hero-description text-white">Access curated study materials, past papers,
+                                    tutorials, and reference books to enhance your learning journey with SomaConnect.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Start Learning</a>
+                                    <a href="/about" class="btn btn-outline-modern btn-lg">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <!-- Slide 2 -->
+            {{-- <div class="hero-slide" style="background-image: url('/assets3/images/slider/slider2-home2.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Digital Library</span>
+                                <h1 class="hero-title">Learn Anytime, <span>Anywhere</span></h1>
+                                <p class="hero-description text-white">Study on the go with access to resources, discussion
+                                    forums, and progress tracking all in one platform.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Explore Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <!-- Slide 3 -->
+            {{-- <div class="hero-slide" style="background-image: url('/assets3/images/slider/slider3-home3.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Interactive Learning</span>
+                                <h1 class="hero-title">Grow Your <span>Knowledge</span></h1>
+                                <p class="hero-description text-white">Collaborate with teachers and students through
+                                    forums, discussions, and progress tracking tools.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <!-- Slide 1 -->
             <div class="hero-slide" style="background-image: url('/assets3/images/slider/slider1-home1.jpg');">
                 <div class="container">
                     <div class="row">
@@ -61,6 +119,120 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Slide 4 -->
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg1.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Premium Resources</span>
+                                <h1 class="hero-title">Unlock Your <span>Potential</span></h1>
+                                <p class="hero-description text-white">Comprehensive learning materials designed to help you
+                                    excel in your academic journey.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Start Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg2.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Expert Guidance</span>
+                                <h1 class="hero-title">Learn from <span>the Best</span></h1>
+                                <p class="hero-description text-white">Access tutorials and resources created by experienced
+                                    educators.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Explore</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg3.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Community Learning</span>
+                                <h1 class="hero-title">Connect & <span>Collaborate</span></h1>
+                                <p class="hero-description text-white">Join discussions, share knowledge, and grow together
+                                    with fellow learners.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Join Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg4.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Flexible Learning</span>
+                                <h1 class="hero-title">Study at <span>Your Pace</span></h1>
+                                <p class="hero-description text-white">Self-paced learning with progress tracking and
+                                    personalized recommendations.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg5.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Exam Preparation</span>
+                                <h1 class="hero-title">Ace Your <span>Exams</span></h1>
+                                <p class="hero-description text-white">Past papers, practice tests, and revision materials
+                                    to boost your confidence.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Prepare Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9 -->
+            <div class="hero-slide" style="background-image: url('/assets3/images/slider/soma-bg6.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <span class="hero-badge">Achieve More</span>
+                                <h1 class="hero-title">Your Success <span>Starts Here</span></h1>
+                                <p class="hero-description text-white">Everything you need to succeed in one platform.
+                                    Start your learning journey today.</p>
+                                <div class="hero-buttons">
+                                    <a href="/materials" class="btn btn-primary-modern btn-lg">Begin Journey</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -84,7 +256,8 @@
                         <div class="category-content text-end">
                             <span class="category-label">Available Resources</span>
                             <h3 class="category-title text-white">Reference Books</h3>
-                            <a href="/reference-books" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
+                            <a href="/reference-books" class="category-link">Explore <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -481,7 +654,7 @@
             height: 700px;
         }
 
-        .hero-slider .slick-slide > div {
+        .hero-slider .slick-slide>div {
             height: 100%;
         }
 
@@ -956,6 +1129,7 @@
 
         /* Responsive */
         @media (max-width: 991px) {
+
             .hero-section,
             .hero-slide {
                 height: 600px;
@@ -975,6 +1149,7 @@
         }
 
         @media (max-width: 767px) {
+
             .hero-section,
             .hero-slide {
                 height: 500px;
@@ -1016,6 +1191,7 @@
         }
 
         @media (max-width: 480px) {
+
             .hero-section,
             .hero-slide {
                 height: 400px;
