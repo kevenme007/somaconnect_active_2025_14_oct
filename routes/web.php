@@ -42,7 +42,7 @@ Route::get('/', function () {
         ->get();
     $pastpapers         = Resource::where('resource_type', 'PastPaper')
         ->where('status', 'approved')
-        ->take(10)
+        ->take(8)
         ->get();
     $mostReadResources = Resource::selectRaw('resources.id, resources.title, resources.description, resources.author, image_path , subject_id, resources.grade_level, COUNT(resource_interactions.id) as views')
         ->join('resource_interactions', 'resources.id', '=', 'resource_interactions.resource_id')
