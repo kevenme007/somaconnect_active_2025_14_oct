@@ -22,15 +22,62 @@ class ProfileController extends Controller
     public function show(User $user)
     {
         $profile = $user->profile;
-        dd($profile);
+        // dd($profile);
         return view('profiles.show', compact('profile', 'user'));
     }
+
+    // public function edit()
+    // {
+    //     $user = auth()->user();
+
+    //     if (!$user->profile) {
+    //         $user->profile()->create();
+    //         $user->refresh();
+    //     }
+
+    //     $profile = $user->profile;
+
+    //     $regions  = Region::select('id', 'name')->get();
+
+
+    //     $defaultRegionId = $profile->region_id ?? ($regions->first()?->id ?? null);
+    //     $districts = $defaultRegionId ? District::where('region_id', $defaultRegionId)->get() : collect();
+
+
+    //     $schools  = School::select('id', 'name')->get();
+    //     $subjects = Subject::select('id', 'name')->get();
+    //     $roles = [
+    //         'student' => 'Student',
+    //         'teacher' => 'Teacher',
+    //         'admin'   => 'Admin'
+    //     ];
+
+    //     $grades = ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7'];
+    //     $genders = [
+    //         'male' => 'Male',
+    //         'female' => 'Female'
+    //     ];
+
+    //     return view('profiles.edit', compact(
+    //         'user',
+    //         'profile',
+    //         'regions',
+    //         'districts',
+    //         'schools',
+    //         'subjects',
+    //         'roles',
+    //         'grades',
+    //         'genders'
+    //     ));
+
+
+    // }
+
 
     public function edit()
     {
         $user = auth()->user();
 
-        // Ensure profile exists
         if (!$user->profile) {
             $user->profile()->create();
             $user->refresh();
@@ -38,27 +85,19 @@ class ProfileController extends Controller
 
         $profile = $user->profile;
 
-        $regions = Region::all();
-
-        // Default region ID fallback
-
+        $regions  = Region::select('id', 'name')->get();
         $defaultRegionId = $profile->region_id ?? ($regions->first()?->id ?? null);
         $districts = $defaultRegionId ? District::where('region_id', $defaultRegionId)->get() : collect();
+        $schools  = School::select('id', 'name')->get();
+        $subjects = Subject::select('id', 'name')->get();
 
-        $schools = School::all();
-
-        $subjects = Subject::all();
         $roles = [
             'student' => 'Student',
             'teacher' => 'Teacher',
             'admin'   => 'Admin'
         ];
-
         $grades = ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7'];
-        $genders = [
-            'male' => 'Male',
-            'female' => 'Female'
-        ];
+        $genders = ['male' => 'Male', 'female' => 'Female'];
 
         return view('profiles.edit', compact(
             'user',
@@ -72,7 +111,6 @@ class ProfileController extends Controller
             'genders'
         ));
     }
-
 
     public function update(Request $request)
     {

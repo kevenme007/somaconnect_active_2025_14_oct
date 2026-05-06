@@ -9,7 +9,7 @@
             <div class="col-lg-10">
                 <!-- Header -->
                 <div class="portal-header mb-4">
-                    <div class="d-flex align-items-center">
+                    <div class="_d-flex align-items-center">
                         <div class="portal-logo me-3">
                             <i class="fas fa-user-circle fa-2x text-white"></i>
                         </div>
