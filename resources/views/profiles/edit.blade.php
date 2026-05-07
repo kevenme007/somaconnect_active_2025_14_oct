@@ -289,6 +289,9 @@
                             </div>
                         </div>
                         <div class="col-12 text-end">
+                            <button class="btn btn-primary-custom px-5">
+                                <i class="fas fa-save me-2"></i> <a href="/">Visit Home</a>
+                            </button>
                             <button type="submit" class="btn btn-primary-custom px-5">
                                 <i class="fas fa-save me-2"></i> Save Changes
                             </button>
