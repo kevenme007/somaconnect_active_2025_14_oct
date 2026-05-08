@@ -163,7 +163,7 @@
                     <i class="bi bi-person"></i><span>My Profile</span>
                 </a>
             </li>
-
+{{--
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/interacted-resources">
                     <i class="bi bi-clock-history"></i><span>Interacted Resources</span>
@@ -180,7 +180,7 @@
                 <a class="nav-link collapsed" href="/favorite-materials">
                     <i class="bi bi-heart"></i><span>Favorite Materials</span>
                 </a>
-            </li>
+            </li> --}}
         @endif
 
         {{-- Logout for everyone --}}

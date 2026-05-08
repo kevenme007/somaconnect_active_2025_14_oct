@@ -215,11 +215,11 @@
                         <!-- Grade (if student) -->
                         @if (old('role', $user->role) === 'student')
                         <div class="col-md-6">
-                            <label class="form-label">Grade <span class="text-danger">*</span></label>
+                            <label class="form-label">Class <span class="text-danger">*</span></label>
                             <div class="input-group-custom">
                                 <i class="fas fa-graduation-cap"></i>
                                 <select name="classroom" class="form-select" required>
-                                    <option value="">Select Grade</option>
+                                    <option value="">Select class</option>
                                     @foreach ($grades as $grade)
                                         <option value="{{ $grade }}" @selected((old('classroom') ?? $profile->classroom) === $grade)>{{ $grade }}</option>
                                     @endforeach

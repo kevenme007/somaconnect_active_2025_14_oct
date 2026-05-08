@@ -493,7 +493,7 @@
 
     <!-- Footer -->
     @include('includes.frontend1.footer')
-
+@auth
     <!-- AI Chat Button (Maktaba Connect) -->
     <button type="button" class="ai-chat-button" id="aiChatButton" data-bs-toggle="modal"
         data-bs-target="#maktabaChatModal">
@@ -548,6 +548,7 @@
             </div>
         </div>
     </div>
+    @endauth
 
     <style>
         /* Custom modal positioning */

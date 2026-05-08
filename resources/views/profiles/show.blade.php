@@ -1,4 +1,4 @@
-@extends('layouts.main2_frontend')
+@extends('layouts.main3_frontend')
 
 @section('title', 'Student Profile')
 
@@ -47,7 +47,10 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <strong>Gender:</strong>
-                            <p class="text-muted">{{ ucfirst($profile->gender) ?? 'Not Specified' }}</p>
+                            {{-- <p class="text-muted">{{ ucfirst($profile->gender) ?? 'Not Specified' }}</p> --}}
+                            <p class="text-muted">
+                                {{ $profile?->gender ? ucfirst($profile->gender) : 'Not Specified' }}
+                            </p>
                         </div>
                         <div class="col-md-6 mb-3">
                             <strong>Date of Birth:</strong>

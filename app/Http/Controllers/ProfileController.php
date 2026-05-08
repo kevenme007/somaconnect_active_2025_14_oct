@@ -19,11 +19,56 @@ use App\Http\Requests\ProfileUpdateRequest;
 class ProfileController extends Controller
 {
 
-    public function show(User $user)
+    // public function show(User $user)
+    // {
+    //     $profile = $user->profile;
+    //     return view('profiles.show', compact('profile', 'user'));
+    // }
+
+    public function show()
     {
+        $user = auth()->user();
+
+        if (!$user->profile) {
+            $user->profile()->create();
+            $user->refresh();
+        }
+
         $profile = $user->profile;
-        // dd($profile);
-        return view('profiles.show', compact('profile', 'user'));
+
+        $roles = [
+            'student' => 'Student',
+            'teacher' => 'Teacher',
+            'admin'   => 'Admin',
+        ];
+
+        $grades = [
+            'Class 1',
+            'Class 2',
+            'Class 3',
+            'Class 4',
+            'Class 5',
+            'Class 6',
+        ];
+
+        $genders = [
+            'male' => 'Male',
+            'female' => 'Female',
+        ];
+
+        $subjects = Subject::select('id', 'name')->get();
+
+        $schools = School::select('id', 'name')->get();
+
+        return view('profiles.show', compact(
+            'user',
+            'profile',
+            'roles',
+            'grades',
+            'genders',
+            'subjects',
+            'schools'
+        ));
     }
 
     // public function edit()
@@ -52,7 +97,7 @@ class ProfileController extends Controller
     //         'admin'   => 'Admin'
     //     ];
 
-    //     $grades = ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7'];
+    //     $grades = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7'];
     //     $genders = [
     //         'male' => 'Male',
     //         'female' => 'Female'
@@ -96,7 +141,7 @@ class ProfileController extends Controller
             'teacher' => 'Teacher',
             'admin'   => 'Admin'
         ];
-        $grades = ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7'];
+        $grades = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6'];
         $genders = ['male' => 'Male', 'female' => 'Female'];
 
         return view('profiles.edit', compact(

@@ -38,7 +38,7 @@
                     <div class="login-card">
                         <!-- Logo -->
                         <div class="text-center mb-4">
-                            <img src="{{ asset('/assets/img/logo3.png') }}" alt="Soma Connect Logo" class="login-logo-img">
+                            <img src="{{ asset('/assets3/images/logo/somaconnect.svg') }}" alt="Soma Connect Logo" class="login-logo-img" height="75px">
                         </div>
 
                         <!-- Header -->
@@ -129,11 +129,11 @@
                     </div>
 
                     <!-- Footer Note -->
-                    <p class="text-center mt-4 login-footer">
+                    {{-- <p class="text-center mt-4 login-footer">
                         By signing in, you agree to our
                         <a href="/terms" class="footer-link">Terms</a> and
                         <a href="/privacy" class="footer-link">Privacy Policy</a>
-                    </p>
+                    </p> --}}
                 </div>
             </div>
         </div>

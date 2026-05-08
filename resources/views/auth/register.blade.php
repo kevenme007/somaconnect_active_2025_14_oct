@@ -40,7 +40,7 @@
                     <div class="register-card">
                         <!-- Logo -->
                         <div class="text-center mb-3">
-                            <img src="{{ asset('/assets/img/logo3.png') }}" alt="Soma Connect Logo" class="register-logo-img">
+                            <img src="{{ asset('/assets3/images/logo/somaconnect.svg') }}" alt="Soma Connect Logo" class="register-logo-img" height="75">
                         </div>
 
                         <!-- Header -->

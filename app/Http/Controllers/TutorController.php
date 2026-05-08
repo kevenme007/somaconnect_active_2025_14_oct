@@ -57,6 +57,49 @@ class TutorController extends Controller
         return view('partials.chat_modal', compact('questions'));
     }
 
+    // public function askModal(Request $request)
+    // {
+    //     $request->validate([
+    //         'question' => 'required|string|max:1000',
+    //     ]);
+
+    //     try {
+    //         $question = TutorQuestion::create([
+    //             'user_id'  => auth()->id(),
+    //             'question' => $request->question,
+    //         ]);
+
+    //         $result = $this->getAnswerFromMultiAI($request->question);
+
+    //         $question->update([
+    //             'answer' => $result['answer'],
+    //             'model_used' => $result['model_used'] ?? 'fallback'
+    //         ]);
+
+    //         $questions = TutorQuestion::where('user_id', auth()->id())
+    //             ->oldest()
+    //             ->get();
+
+    //         $html = view('partials.tutor_history', compact('questions'))->render();
+
+    //         return response()->json([
+    //             'success' => true,
+    //             'html'    => $html,
+    //             'model_used' => $result['model_used'] ?? 'fallback'
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         Log::error('Tutor modal error: ' . $e->getMessage());
+    //         Log::error('Stack trace: ' . $e->getTraceAsString());
+
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Failed to process your question. Please try again.',
+    //             'error' => config('app.debug') ? $e->getMessage() : null
+    //         ], 500);
+    //     }
+    // }
+
+
     public function askModal(Request $request)
     {
         $request->validate([
@@ -64,42 +107,32 @@ class TutorController extends Controller
         ]);
 
         try {
-            // Save the question
             $question = TutorQuestion::create([
                 'user_id'  => auth()->id(),
                 'question' => $request->question,
             ]);
 
-            // Get answer from AI with multi-model fallback
             $result = $this->getAnswerFromMultiAI($request->question);
 
-            // Update the question with answer and model used
             $question->update([
                 'answer' => $result['answer'],
                 'model_used' => $result['model_used'] ?? 'fallback'
             ]);
 
-            // Get updated history for the user
-            $questions = TutorQuestion::where('user_id', auth()->id())
-                ->oldest()
-                ->get();
-
-            // Render partial Blade to return only the history
+            $questions = TutorQuestion::where('user_id', auth()->id())->oldest()->get();
             $html = view('partials.tutor_history', compact('questions'))->render();
 
             return response()->json([
                 'success' => true,
                 'html'    => $html,
-                'model_used' => $result['model_used'] ?? 'fallback'
+                'answer'  => $result['answer'],
+                'model_used' => $result['model_used']
             ]);
         } catch (\Exception $e) {
             Log::error('Tutor modal error: ' . $e->getMessage());
-            Log::error('Stack trace: ' . $e->getTraceAsString());
-
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to process your question. Please try again.',
-                'error' => config('app.debug') ? $e->getMessage() : null
+                'message' => 'Failed to process your question.'
             ], 500);
         }
     }

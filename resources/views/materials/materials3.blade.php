@@ -82,7 +82,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-black mb-0 fw-bold">Form 3 Learning Materials</h4>
-                                    <p class="text-black-50 mb-0 small">Comprehensive resources for Form 1 students</p>
+                                    <p class="text-black-50 mb-0 small">Comprehensive resources for Form 3 students</p>
                                 </div>
                             </div>
                             <div>
