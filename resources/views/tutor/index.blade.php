@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <div class="d-flex align-items-center">
                         <div class="ai-logo me-3"
-                            style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                            style="width: 60px; height: 60px; background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
                             <i class="fa-solid fa-book fa-2x text-white"></i>
                         </div>
                         <div>
@@ -27,7 +27,7 @@
                 style="border-radius: 30px; overflow: hidden; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);">
                 <!-- Chat Header with Status -->
                 <div class="chat-header p-4"
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    style="background: linear-gradient(135deg, #6cbad9 0%, #1dafe9 100%); color: white;">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
                             {{-- <i class="fa-solid fa-book fa-2x me-3"></i> --}}
@@ -47,7 +47,7 @@
                         {{-- <div class="message-item user-message mb-3" style="animation: fadeIn 0.3s ease;">
                             <div class="d-flex justify-content-end">
                                 <div class="message-bubble user-bubble"
-                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 18px; border-radius: 18px 18px 5px 18px; max-width: 80%; word-wrap: break-word; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                    style="background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); color: white; padding: 12px 18px; border-radius: 18px 18px 5px 18px; max-width: 80%; word-wrap: break-word; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                                     <div class="small fw-bold mb-1" style="opacity: 0.8;">
                                         <i class="fas fa-user me-1"></i> You
                                     </div>
@@ -58,7 +58,7 @@
 
                         <div class="message-item user-message mb-3">
                             <div class="d-flex justify-content-end w-100">
-                                <div class="message-bubble user-bubble" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 18px; border-radius: 18px 18px 5px 18px; max-width: 90%; min-width: 150px; word-wrap: break-word; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <div class="message-bubble user-bubble" style="background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); color: white; padding: 10px 18px; border-radius: 18px 18px 5px 18px; max-width: 90%; min-width: 150px; word-wrap: break-word; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                                     <div class="small fw-bold mb-1 opacity-75">
                                         <i class="fas fa-user me-1"></i> You
                                     </div>
@@ -70,12 +70,12 @@
                         <div class="message-item ai-message mb-4" style="animation: fadeIn 0.3s ease 0.1s both;">
                             <div class="d-flex align-items-start">
                                 <div class="ai-avatar me-3"
-                                    style="width: 45px; height: 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                    style="width: 45px; height: 45px; background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                                     <i class="fa-solid fa-book"></i>
                                 </div>
                                 <div class="message-bubble ai-bubble"
                                     style="background: white; padding: 12px 18px; border-radius: 18px 18px 18px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); max-width: calc(100% - 60px); word-wrap: break-word; color: #1e293b;">
-                                    <div class="small fw-bold mb-2" style="color: #667eea;">
+                                    <div class="small fw-bold mb-2" style="color: #1dafe9;">
                                         <i class="fa-solid fa-book me-1"></i> Maktaba Connect
                                         @if (isset($q->model_used))
                                             <span class="badge bg-light text-dark ms-2"
@@ -89,7 +89,7 @@
                     @empty
                         <div class="text-center py-5">
                             <div class="welcome-icon mb-4">
-                                <i class="fas fa-robot fa-5x" style="color: #667eea; opacity: 0.3;"></i>
+                                <i class="fas fa-robot fa-5x" style="color: #1dafe9; opacity: 0.3;"></i>
                             </div>
                             <h4 class="fw-bold mb-3" style="color: #1e293b;">Welcome to Maktaba Connect! 👋</h4>
                             <p class="text-muted mb-4" style="max-width: 400px; margin: 0 auto;">I'm your AI learning
@@ -133,7 +133,7 @@
                                     <span id="dots" class="text-primary"></span>
                                 </div>
                                 <button type="submit" class="btn btn-primary px-5 py-2 "
-                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 50px; font-weight: 600;">
+                                    style="background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); border: none; border-radius: 50px; font-weight: 600;">
                                     <i class="fas fa-paper-plane me-2"></i>
                                     Ask
                                 </button>
@@ -160,7 +160,7 @@
                                 <span id="dots" class="text-primary"></span>
                             </div>
                             <button type="submit" class="btn btn-primary px-5 py-2 ms-auto"
-                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 50px; font-weight: 600;">
+                                style="background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); border: none; border-radius: 50px; font-weight: 600;">
                                 <i class="fas fa-paper-plane me-2"></i> Ask
                             </button>
                         </div>
@@ -185,7 +185,7 @@
                                 <span id="dots" class="text-primary"></span>
                             </div>
                             <button type="submit" class="btn btn-primary px-5 py-2 ms-auto"
-                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 50px; font-weight: 600;">
+                                style="background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); border: none; border-radius: 50px; font-weight: 600;">
                                 <i class="fas fa-paper-plane me-2"></i> Ask
                             </button>
                         </div>
@@ -264,7 +264,7 @@
                 typingDiv.id = 'typingIndicator';
                 typingDiv.innerHTML = `
                     <div class="d-flex align-items-start">
-                        <div class="ai-avatar me-3" style="width: 45px; height: 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                        <div class="ai-avatar me-3" style="width: 45px; height: 45px; background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
                             <i class="fa-solid fa-book"></i>
                         </div>
                         <div class="message-bubble ai-bubble" style="background: white; padding: 12px 20px; border-radius: 18px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
@@ -291,7 +291,7 @@
                 userDiv.className = 'message-item user-message mb-3';
                 userDiv.innerHTML = `
                     <div class="d-flex justify-content-end w-100">
-                        <div class="message-bubble user-bubble" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 18px; border-radius: 18px 18px 5px 18px; max-width: 90%; min-width: 150px; word-wrap: break-word; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <div class="message-bubble user-bubble" style="background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); color: white; padding: 10px 18px; border-radius: 18px 18px 5px 18px; max-width: 90%; min-width: 150px; word-wrap: break-word; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                             <div class="small fw-bold mb-1 opacity-75">
                                 <i class="fas fa-user me-1"></i> You
                             </div>
@@ -309,11 +309,11 @@
                 aiDiv.style.animation = 'fadeIn 0.3s ease';
                 aiDiv.innerHTML = `
                     <div class="d-flex align-items-start">
-                        <div class="ai-avatar me-3" style="width: 45px; height: 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                        <div class="ai-avatar me-3" style="width: 45px; height: 45px; background: linear-gradient(135deg, #1dafe9 0%, #1dafe9 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
                             <i class="fa-solid fa-book"></i>
                         </div>
                         <div class="message-bubble ai-bubble" style="background: white; padding: 12px 18px; border-radius: 18px 18px 18px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); max-width: calc(100% - 60px); word-wrap: break-word; color: #1e293b;">
-                            <div class="small fw-bold mb-2" style="color: #667eea;">
+                            <div class="small fw-bold mb-2" style="color: #1dafe9;">
                                 <i class="fa-solid fa-book me-1"></i> Maktaba Connect
                             </div>
                             ${escapeHtml(answer).replace(/\n/g, '<br>')}
