@@ -373,7 +373,7 @@ class TutorController extends Controller
         }
 
         // Default response for other questions
-        return "🤖 **I'm here to help!**\n\nThank you for your question. I'm currently operating in offline mode, but I can still assist with general topics.\n\nYou can ask me about:\n\n• **Subject help**: mathematics, science, languages, history, geography\n• **Study techniques**: how to learn effectively, memory tips\n• **Exam preparation**: past papers, revision strategies\n• **Resources**: books, tutorials, learning materials\n\nPlease ask a more specific question, and I'll do my best to help!\n\n*Note: The AI models are temporarily unavailable. Please try again in a few moments.*";
+        return "**I'm here to help!**\n\nThank you for your question. I'm currently operating in offline mode, but I can still assist with general topics.\n\nYou can ask me about:\n\n• **Subject help**: mathematics, science, languages, history, geography\n• **Study techniques**: how to learn effectively, memory tips\n• **Exam preparation**: past papers, revision strategies\n• **Resources**: books, tutorials, learning materials\n\nPlease ask a more specific question, and I'll do my best to help!\n\n*Note: The services are temporarily unavailable. Please try again in a few moments.*";
     }
 
     // Keep the old getFallbackResponse for backward compatibility
