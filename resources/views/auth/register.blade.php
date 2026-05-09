@@ -11,7 +11,8 @@
                     <!-- Register Card Skeleton -->
                     <div class="skeleton-register-card">
                         <div class="text-center mb-4">
-                            <div class="skeleton-loader mx-auto mb-3" style="width: 100px; height: 40px; border-radius: 10px;"></div>
+                            <div class="skeleton-loader mx-auto mb-3"
+                                style="width: 100px; height: 40px; border-radius: 10px;"></div>
                             <div class="skeleton-loader mx-auto mb-2" style="width: 150px; height: 30px;"></div>
                             <div class="skeleton-loader mx-auto" style="width: 200px; height: 20px;"></div>
                         </div>
@@ -40,7 +41,8 @@
                     <div class="register-card">
                         <!-- Logo -->
                         <div class="text-center mb-3">
-                            <img src="{{ asset('/assets3/images/logo/somaconnect.svg') }}" alt="Soma Connect Logo" class="register-logo-img" height="75">
+                            <img src="{{ asset('/assets3/images/logo/somaconnect.svg') }}" alt="Soma Connect Logo"
+                                class="register-logo-img" height="75">
                         </div>
 
                         <!-- Header -->
@@ -59,15 +61,8 @@
                                 </label>
                                 <div class="input-wrapper">
                                     <i class="fas fa-user input-icon"></i>
-                                    <input id="name"
-                                           type="text"
-                                           name="name"
-                                           value="{{ old('name') }}"
-                                           class="form-control"
-                                           placeholder=""
-                                           required
-                                           autofocus
-                                           autocomplete="name">
+                                    <input id="name" type="text" name="name" value="{{ old('name') }}"
+                                        class="form-control" placeholder="" required autofocus autocomplete="name">
                                 </div>
                                 @error('name')
                                     <span class="error-message">{{ $message }}</span>
@@ -77,18 +72,12 @@
                             <!-- Email Address -->
                             <div class="form-group mb-3">
                                 <label for="email" class="form-label">
-                                   </i>Email Address
+                                    </i>Email Address
                                 </label>
                                 <div class="input-wrapper">
                                     <i class="fas fa-envelope input-icon"></i>
-                                    <input id="email"
-                                           type="email"
-                                           name="email"
-                                           value="{{ old('email') }}"
-                                           class="form-control"
-                                           placeholder=""
-                                           required
-                                           autocomplete="username">
+                                    <input id="email" type="email" name="email" value="{{ old('email') }}"
+                                        class="form-control" placeholder="" required autocomplete="username">
                                 </div>
                                 @error('email')
                                     <span class="error-message">{{ $message }}</span>
@@ -96,17 +85,34 @@
                             </div>
 
                             <!-- Role Selection -->
-                            <div class="form-group mb-3">
+                            {{-- <div class="form-group mb-3">
                                 <label for="role" class="form-label">
-                                    {{-- <i class="fas fa-user-tag me-2"></i> --}}
                                     Register As
                                 </label>
                                 <div class="select-wrapper">
-                                    {{-- <i class="fas fa-crown select-icon"></i> --}}
                                     <select name="role" id="role" class="form-select" required>
                                         <option value="" disabled selected>-- Select Role --</option>
-                                        <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Student</option>
-                                        <option value="teacher" {{ old('role') == 'teacher' ? 'selected' : '' }}>Teacher</option>
+                                        <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Student
+                                        </option>
+                                        <option value="teacher" {{ old('role') == 'teacher' ? 'selected' : '' }}>Teacher
+                                        </option>
+                                    </select>
+                                    <div class="select-arrow">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                @error('role')
+                                    <span class="error-message">{{ $message }}</span>
+                                @enderror
+                            </div> --}}
+
+                            <div class=" mb-3">
+                                <label for="role" class="form-label">Register As</label>
+                                <div class="select-wrapper">
+                                    <select name="role" id="role" class="form-select" required>
+                                        <option value="" disabled selected>-- Select Role --</option>
+                                        <option value="student">Student</option>
+                                        <option value="teacher">Teacher</option>
                                     </select>
                                     <div class="select-arrow">
                                         <i class="fas fa-chevron-down"></i>
@@ -125,14 +131,10 @@
                                 </label>
                                 <div class="input-wrapper">
                                     <i class="fas fa-lock input-icon"></i>
-                                    <input id="password"
-                                           type="password"
-                                           name="password"
-                                           class="form-control"
-                                           placeholder="••••••••"
-                                           required
-                                           autocomplete="new-password">
-                                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('password')">
+                                    <input id="password" type="password" name="password" class="form-control"
+                                        placeholder="••••••••" required autocomplete="new-password">
+                                    <button type="button" class="password-toggle"
+                                        onclick="togglePasswordVisibility('password')">
                                         <i class="fas fa-eye" id="togglePasswordIcon"></i>
                                     </button>
                                 </div>
@@ -153,18 +155,14 @@
                             <div class="form-group mb-3">
                                 <label for="password_confirmation" class="form-label">
                                     {{-- <i class="fas fa-lock me-2"> --}}
-                                        </i>Confirm Password
+                                    </i>Confirm Password
                                 </label>
                                 <div class="input-wrapper">
                                     <i class="fas fa-lock input-icon"></i>
-                                    <input id="password_confirmation"
-                                           type="password"
-                                           name="password_confirmation"
-                                           class="form-control"
-                                           placeholder="••••••••"
-                                           required
-                                           autocomplete="new-password">
-                                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('password_confirmation')">
+                                    <input id="password_confirmation" type="password" name="password_confirmation"
+                                        class="form-control" placeholder="••••••••" required autocomplete="new-password">
+                                    <button type="button" class="password-toggle"
+                                        onclick="togglePasswordVisibility('password_confirmation')">
                                         <i class="fas fa-eye" id="toggleConfirmPasswordIcon"></i>
                                     </button>
                                 </div>
@@ -300,7 +298,8 @@
         /* Custom select styling */
         .form-select {
             padding-right: 40px;
-            background-image: none; /* Remove default arrow */
+            background-image: none;
+            /* Remove default arrow */
         }
 
         /* Custom arrow for select */
@@ -544,15 +543,20 @@
         }
 
         .skeleton-loader {
-            background: linear-gradient(90deg, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.2) 75%);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.2) 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
             border-radius: 4px;
         }
 
         @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         /* Responsive */
@@ -593,15 +597,104 @@
         .form-select::-ms-expand {
             display: none;
         }
+
+        /* Fix select input size and overlapping */
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        /* .form-select {
+                    width: 100%;
+                    padding: 0.7rem 2.5rem 0.7rem 40px !important;
+                    background: white;
+                    border: 2px solid #e2e8f0;
+                    border-radius: 14px;
+                    font-size: 0.9rem;
+                    color: #1e293b;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    height: auto;
+                }
+
+                .form-select::-ms-expand {
+                    display: none;
+                } */
+
+        .form-select {
+            width: 100%;
+            padding: 0.7rem 2.5rem 0.7rem 40px !important;
+            background: white !important;
+            /* no background image */
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            color: #1e293b;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            line-height: 1.2;
+            height: auto;
+        }
+
+        .form-select::-ms-expand {
+            display: none;
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6cbad9;
+            font-size: 0.8rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .select-icon {
+            display: none;
+            /* or adjust if you want an icon */
+        }
+
+        /* Make the select the same height as other inputs */
+        .form-select,
+        .form-control {
+            min-height: 44px;
+            /* consistent height */
+        }
+
+        @media (max-width: 768px) {
+
+            .form-select,
+            .form-control {
+                font-size: 16px;
+                /* prevents zoom on iOS */
+                padding-top: 0.6rem;
+                padding-bottom: 0.6rem;
+            }
+        }
+
+        select.form-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: white !important;
+            clip-path: inset(0 20px 0 0);
+        }
     </style>
 
     <script>
         // Password visibility toggle
         function togglePasswordVisibility(fieldId) {
             const passwordInput = document.getElementById(fieldId);
-            const toggleIcon = fieldId === 'password'
-                ? document.getElementById('togglePasswordIcon')
-                : document.getElementById('toggleConfirmPasswordIcon');
+            const toggleIcon = fieldId === 'password' ?
+                document.getElementById('togglePasswordIcon') :
+                document.getElementById('toggleConfirmPasswordIcon');
 
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';

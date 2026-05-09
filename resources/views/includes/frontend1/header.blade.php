@@ -268,4 +268,13 @@
             float: right;
         }
     }
+
+    select.form-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white !important;
+    /* Clip the native arrow area */
+    clip-path: inset(0 20px 0 0);
+}
 </style>
