@@ -60,8 +60,9 @@ class ForumThreadController extends Controller
     {
         $user = auth()->user();
 
+        $schools = School::all();
         $threads = ForumThread::with(['user', 'school'])
-            ->withCount('posts') 
+            ->withCount('posts')
             ->when($user->role !== 'admin', function ($query) use ($user) {
                 $schoolId = $user->profile->school_id ?? null;
                 if ($schoolId) {
@@ -72,7 +73,7 @@ class ForumThreadController extends Controller
             ->latest()
             ->paginate(20);
 
-        return view('forum.index', compact('threads'));
+        return view('forum.index', compact('threads', 'schools'));
     }
     public function create()
     {
