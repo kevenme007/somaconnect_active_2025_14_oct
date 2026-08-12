@@ -277,4 +277,11 @@
     /* Clip the native arrow area */
     clip-path: inset(0 20px 0 0);
 }
+
+.user-dropdown .btn-link:hover,
+.user-dropdown .btn-link:focus {
+    background: rgba(108, 186, 217, 0.1) !important;
+    color: #6cbad9 !important;
+    border-radius: 30px;
+}
 </style>

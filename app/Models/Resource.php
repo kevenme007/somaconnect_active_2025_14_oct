@@ -3,10 +3,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resource extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -64,7 +65,7 @@ class Resource extends Model
     {
         return $this->belongsTo(User::class, 'approved_by');
     }
-    
+
     public function setStatusAttribute($value)
     {
         $this->attributes['status'] = strtolower($value);
@@ -73,6 +74,10 @@ class Resource extends Model
     public function getStatusLabelAttribute()
     {
         return ucfirst($this->status);
+    }
+    public function interactions()
+    {
+        return $this->hasMany(ResourceInteraction::class);
     }
 
 }

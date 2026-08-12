@@ -14,10 +14,6 @@ use Illuminate\Contracts\Encryption\DecryptException;
 
 class ResourceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
 
 
     public function index()
@@ -147,84 +143,6 @@ class ResourceController extends Controller
         return redirect()->route('resources.list')->with('success', 'Resource uploaded successfully.');
     }
 
-    // public function update(Request $request, Resource $resource)
-    // {
-    //     $request->validate([
-    //         'title'              => 'required|string|max:255',
-    //         'author'             => 'nullable|string|max:255',
-    //         'file_path'          => 'nullable|file|mimes:pdf,epub,mp4|max:102400',
-    //         'image_path'         => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:4096',
-    //         'subject_id'         => 'required|exists:subjects,id',
-    //         'resource_type'      => 'required|string|max:255',
-    //         'grade_level'        => 'nullable|integer|min:1|max:6',
-    //         'description'        => 'nullable|string',
-    //         'status'             => 'required|string|in:pending,approved,disapproved',
-    //     ]);
-
-    //     try {
-    //         $oldStatus = $resource->status;
-
-
-    //         $resource->fill($request->only([
-    //             'title',
-    //             'author',
-    //             'subject_id',
-    //             'resource_type',
-    //             'grade_level',
-    //             'description',
-    //             'resource_extension',
-    //             'status'
-    //         ]));
-
-    //         if ($request->hasFile('file_path')) {
-    //             if ($resource->file_path && Storage::disk('public')->exists($resource->file_path)) {
-    //                 Storage::disk('public')->delete($resource->file_path);
-    //             }
-    //             $file = $request->file('file_path');
-    //             $resource->file_path = $file->store('resources/files', 'public');
-    //             $resource->resource_extension = strtolower($file->getClientOriginalExtension());
-    //         }
-
-    //         if ($request->hasFile('image_path')) {
-    //             if ($resource->image_path && Storage::disk('public')->exists($resource->image_path)) {
-    //                 Storage::disk('public')->delete($resource->image_path);
-    //             }
-    //             $image = $request->file('image_path');
-    //             $resource->image_path = $image->store('resources/images', 'public');
-    //             if (!$resource->resource_extension) {
-    //                 $resource->resource_extension = strtolower($image->getClientOriginalExtension());
-    //             }
-    //         }
-
-    //         if (
-    //             $oldStatus !== 'approved' &&
-    //             strtolower($request->status) === 'approved'
-    //         ) {
-    //             $resource->approved_by = Auth::id();
-    //             $resource->approved_at = Carbon::now();
-    //         }
-
-    //         if (
-    //             $oldStatus === 'approved' &&
-    //             strtolower($request->status) !== 'approved'
-    //         ) {
-    //             $resource->approved_by = null;
-    //             $resource->approved_at = null;
-    //         }
-
-
-    //         $resource->save();
-
-    //         return redirect()->route('resources.list')
-    //             ->with('success', 'Resource updated successfully!');
-    //     } catch (QueryException $e) {
-    //         return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
-    //     } catch (\Exception $e) {
-    //         return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
-    //     }
-    // }
-
-
     public function update(Request $request, Resource $resource)
     {
 
@@ -259,19 +177,17 @@ class ResourceController extends Controller
                     Storage::disk('public')->delete($resource->file_path);
                 }
                 $file = $request->file('file_path');
-                $resource->file_path = $file->store('resources', 'public'); // <-- match create
+                $resource->file_path = $file->store('resources', 'public');
                 $resource->resource_extension = strtolower($file->getClientOriginalExtension());
             }
 
-            // Image upload (matches create method)
             if ($request->hasFile('image_path')) {
                 if ($resource->image_path && Storage::disk('public')->exists($resource->image_path)) {
                     Storage::disk('public')->delete($resource->image_path);
                 }
                 $image = $request->file('image_path');
-                $resource->image_path = $image->store('resource_images', 'public'); // <-- match create
+                $resource->image_path = $image->store('resource_images', 'public');
 
-                // Fallback extension if no file uploaded
                 if (!$resource->resource_extension) {
                     $resource->resource_extension = strtolower($image->getClientOriginalExtension());
                 }
@@ -280,11 +196,9 @@ class ResourceController extends Controller
 
 
             if ($oldStatus !== 'approved' && strtolower($request->status) === 'approved') {
-                // The resource is being approved now
                 $resource->approved_by = Auth::id();
                 $resource->approved_at = Carbon::now();
             } elseif ($oldStatus === 'approved' && strtolower($request->status) !== 'approved') {
-                // The resource was approved but is now being unapproved
                 $resource->approved_by = null;
                 $resource->approved_at = null;
             }

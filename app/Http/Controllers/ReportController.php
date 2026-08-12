@@ -172,9 +172,11 @@ class ReportController extends Controller
 
     public function mostReadResources()
     {
-        $resources = Resource::withCount('documentReads')
-            ->orderByDesc('document_reads_count')
-            ->take(10) // Top 10
+        $resources = Resource::withCount(['interactions as views' => function ($query) {
+            $query->where('interaction_type', 'view');
+        }])
+            ->orderByDesc('views')
+            ->take(10)
             ->get();
 
         return view('admin.reports.most_read_resources', compact('resources'));
@@ -238,53 +240,96 @@ class ReportController extends Controller
 
     public function deviceStats(Request $request)
     {
-        // -------------------------------
-        // 1️⃣ Grouped device stats (for charts)
-        // -------------------------------
+        // --- Grouped device stats ---
         $devices = UserSession::select(DB::raw("
-        CASE
-            WHEN LOWER(device) LIKE '%windows%' THEN 'Desktop | Windows Machine'
-            WHEN LOWER(device) LIKE '%mac%' AND LOWER(device) NOT LIKE '%ipad%' THEN 'Desktop | Macbook Machine'
-            WHEN LOWER(device) LIKE '%linux%' THEN 'Desktop | Linux Machine'
-            WHEN LOWER(device) LIKE '%android%' THEN 'Mobile | Android Device'
-            WHEN LOWER(device) LIKE '%iphone%' THEN 'Mobile | iOS Device'
-            WHEN LOWER(device) LIKE '%ipad%' THEN 'Tablet | iPad Device'
-            WHEN LOWER(device) LIKE '%tablet%' THEN 'Tablet | Other Tablet'
-            ELSE 'Unknown Device'
-        END as device_group
-    "), DB::raw('count(*) as user_count'))
+            CASE
+                WHEN LOWER(device) LIKE '%windows%' THEN 'Desktop | Windows Machine'
+                WHEN LOWER(device) LIKE '%mac%' AND LOWER(device) NOT LIKE '%ipad%' THEN 'Desktop | Macbook Machine'
+                WHEN LOWER(device) LIKE '%linux%' THEN 'Desktop | Linux Machine'
+                WHEN LOWER(device) LIKE '%android%' THEN 'Mobile | Android Device'
+                WHEN LOWER(device) LIKE '%iphone%' THEN 'Mobile | iOS Device'
+                WHEN LOWER(device) LIKE '%ipad%' THEN 'Tablet | iPad Device'
+                WHEN LOWER(device) LIKE '%tablet%' THEN 'Tablet | Other Tablet'
+                ELSE 'Unknown Device'
+            END as device_group
+        "), DB::raw('count(*) as user_count'))
             ->groupBy('device_group')
             ->orderByDesc('user_count')
             ->get();
 
-        // Labels and data for charts
         $labels = $devices->pluck('device_group');
         $data   = $devices->pluck('user_count');
 
-        // -------------------------------
-        // 2️⃣ Detailed device list (with optional search)
-        // -------------------------------
+        // --- Detailed device list with pagination ---
         $deviceQuery = UserSession::query();
 
-        // Apply filters if provided
         if ($request->filled('user_id')) {
             $deviceQuery->where('user_id', $request->user_id);
         }
-
         if ($request->filled('device')) {
             $deviceQuery->where('device', 'like', '%' . $request->device . '%');
         }
 
-        $deviceList = $deviceQuery->orderByDesc('created_at')->get();
+        $deviceList = $deviceQuery->orderByDesc('created_at')->paginate(25); // 25 per page
 
-        // -------------------------------
-        // 3️⃣ Return view with all data
-        // -------------------------------
+        // Keep query parameters in pagination links
+        $deviceList->appends($request->query());
+
         return view('admin.reports.device_stats', compact(
             'devices',
             'labels',
             'data',
             'deviceList'
         ));
+    }
+
+    public function userSystemReport()
+    {
+        $today = Carbon::today();
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $threeMonthsAgo = Carbon::now()->subMonths(3);
+
+        // Users who logged in today
+        $loggedToday = User::whereHas('sessions', function ($q) use ($today) {
+            $q->whereDate('login_time', $today);
+        })->get();
+
+        // Users who logged in this month
+        $loggedThisMonth = User::whereHas('sessions', function ($q) use ($startOfMonth) {
+            $q->whereDate('login_time', '>=', $startOfMonth);
+        })->get();
+
+        // Users with last login older than 3 months (using sessions)
+        $notLoggedThreeMonths = User::whereHas('sessions', function ($q) use ($threeMonthsAgo) {
+            $q->whereDate('login_time', '<', $threeMonthsAgo);
+        })->get();
+
+        // Users who have never logged in (no sessions)
+        $neverLoggedIn = User::whereDoesntHave('sessions')->get();
+
+        $countToday = $loggedToday->count();
+        $countMonth = $loggedThisMonth->count();
+        $countThreeMonths = $notLoggedThreeMonths->count();
+        $countNever = $neverLoggedIn->count();
+
+        return view('admin.reports.user_system_report', compact(
+            'loggedToday',
+            'loggedThisMonth',
+            'notLoggedThreeMonths',
+            'neverLoggedIn',
+            'countToday',
+            'countMonth',
+            'countThreeMonths',
+            'countNever'
+        ));
+    }
+
+    public function destroy(UserSession $session)
+    {
+        // $this->authorize('delete', $session);
+
+        $session->delete();
+
+        return redirect()->back()->with('success', 'Session deleted successfully.');
     }
 }

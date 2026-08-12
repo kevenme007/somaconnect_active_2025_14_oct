@@ -9,9 +9,36 @@ use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $users = User::where('id', '!=', auth()->id())->get();
+    //     return view('chat.index', compact('users'));
+    // }
+
+    public function index(Request $request)
     {
-        $users = User::where('id', '!=', auth()->id())->get();
+        $user = auth()->user();
+        $schoolId = $user->profile->school_id ?? null;
+
+        $query = User::where('id', '!=', $user->id)
+            ->when($user->role !== 'admin' && $schoolId, function ($q) use ($schoolId) {
+                // Show users from the same school
+                $q->whereHas('profile', function ($sub) use ($schoolId) {
+                    $sub->where('school_id', $schoolId);
+                });
+            });
+
+        // Search by name or email
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $users = $query->get();
+
         return view('chat.index', compact('users'));
     }
 
@@ -44,7 +71,7 @@ class ChatController extends Controller
             ]);
         }
 
-        // Mark all received messages as seen
+
         Message::where('conversation_id', $conversation->id)
             ->where('sender_id', '!=', $authId)
             ->whereNull('seen_at')
@@ -76,12 +103,42 @@ class ChatController extends Controller
             'message' => 'required|string'
         ]);
 
-        $message = Message::create([
+        $conversation = Conversation::find($conversationId);
+        $receiverId = ($conversation->user_one_id == auth()->id())
+            ? $conversation->user_two_id
+            : $conversation->user_one_id;
+
+        Message::create([
             'conversation_id' => $conversationId,
-            'sender_id' => auth()->id(),
-            'message' => $request->message
+            'sender_id'       => auth()->id(),
+            'receiver_id'     => $receiverId,
+            'message'         => $request->message,
         ]);
 
+        // $message = Message::create([
+        //     'conversation_id' => $conversationId,
+        //     'sender_id' => auth()->id(),
+        //     'message' => $request->message
+        // ]);
+
         return back();
+    }
+
+    //     public function showConversation($conversationId)
+    // {
+    //     $messages = Message::where('conversation_id', $conversationId)->get();
+    //     return view('chat.conversation', compact('messages'));
+    // }
+
+    public function showConversation($conversationId)
+    {
+        $conversation = Conversation::findOrFail($conversationId);
+
+        // Determine the other user
+        $otherUserId = ($conversation->user_one_id == auth()->id())
+            ? $conversation->user_two_id
+            : $conversation->user_one_id;
+
+        return redirect()->route('chat.show', $otherUserId);
     }
 }

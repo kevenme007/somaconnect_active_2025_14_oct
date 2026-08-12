@@ -1,251 +1,200 @@
 @extends('layouts.root')
+
 @section('title')
+    Student Dashboard
 @endsection
+
 @section('content')
 <main id="main" class="main">
 
     <div class="pagetitle">
         <h1>Dashboard</h1>
-    </div><!-- End Page Title -->
+    </div>
 
     <section class="section dashboard">
         <div class="row">
 
-            <!-- Left side columns -->
-            <div class="col-lg-8">
+            <!-- Stats Cards Row -->
+            <div class="col-12">
                 <div class="row">
 
-                    <!-- Books Card -->
-                    {{-- <div class="col-xxl-3 col-md-6">
+                    <!-- Past Papers Card -->
+                    <div class="col-xxl-3 col-md-6">
                         <div class="card info-card sales-card">
-
                             <div class="card-body">
-                            @if(count($resources) <= 1)
-                                <h5 class="card-title">Resource</h5>
+                                <h5 class="card-title">Past Papers</h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-file-pdf"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{ $pastPapers->count() }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            @else
-                                <h5 class="card-title">Resources</h5>
-
-                            @endif
-
+                    <!-- Reference Books Card -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card info-card revenue-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Reference Books</h5>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-book"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{ count($resources) }}</h6>
+                                        <h6>{{ $referenceBooks->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div> --}}
-                    <!-- End Books Card -->
+                    </div>
 
-                    <!-- Past Papers Card -->
-                    {{-- <div class="col-xxl-3 col-md-6">
-                        <div class="card info-card revenue-card">
-
+                    <!-- Notes Card -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card info-card customers-card">
                             <div class="card-body">
-                            @if(count($notes) <= 1)
-                                <h5 class="card-title">Note</h5>
-
-                            @else
                                 <h5 class="card-title">Notes</h5>
-
-                            @endif
-
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-files"></i>
+                                        <i class="bi bi-file-text"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{ count($notes) }}</h6>
+                                        <h6>{{ $notes->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div> --}}
-                    <!-- End Past Papers Card -->
+                    </div>
 
-                    <!-- Tutorials Card -->
-                    {{-- <div class="col-xxl-3 col-md-6">
-
+                    <!-- Unread Messages Card -->
+                    <div class="col-xxl-3 col-md-6">
                         <div class="card info-card customers-card">
-
                             <div class="card-body">
-                            @if(count($users) <= 1)
-                                <h5 class="card-title">User</h5>
-
-                            @else
-                                <h5 class="card-title">Users</h5>
-
-                            @endif
-
+                                <h5 class="card-title">Unread Messages</h5>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-person"></i>
+                                        <i class="bi bi-envelope"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{ count($users) }}</h6>
+                                        <h6>{{ $unreadMessages }}</h6>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
-                    </div> --}}
-                    <!-- End Customers Card -->
-
-                                        <!-- Tutorials Card -->
-                    {{-- <div class="col-xxl-3 col-md-6">
-
-                        <div class="card info-card customers-card">
-
-                            <div class="card-body">
-                            @if(count($subscribers) <= 1)
-                                <h5 class="card-title">Subscriber</h5>
-
-                            @else
-                                <h5 class="card-title">Subscribers</h5>
-
-                            @endif
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-person"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>{{ count($subscribers) }}</h6>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div> --}}
-                    <!-- End Customers Card -->
-
-                    <!-- Recent Sales -->
-                    {{-- <div class="col-12">
-                        <div class="card recent-sales overflow-auto">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Recent Added Schools ({{count($schools)}})</h5>
-
-                                <table class="table table-borderless datatable">
-                                    <thead>
-                                        @php
-                                        $id = 1;
-                                        @endphp
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Head Teacher</th>
-                                            <th scope="col">Region</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($schools as $school )
-                                        <tr>
-                                            <th scope="row"><a href="#">{{ $id++ }}</a></th>
-                                            <td>{{ $school->name }}</td>
-                                            <td>{{ $school->headteacher_name }}</td>
-                                            <td>{{ $school->region->name }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
-                            </div>
-
-                        </div>
-                    </div> --}}
-                    <!-- End Recent Sales -->
+                    </div>
 
                 </div>
-            </div><!-- End Left side columns -->
+            </div><!-- End Stats Cards -->
 
-            <!-- Right side columns -->
-            <div class="col-lg-4">
+            <!-- Recent Resources Table -->
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Recently Accessed Resources</h5>
 
-                <!-- Materials Statics -->
-                <div class="card">
-                    <div class="card-body pb-0">
-                        {{-- <h5 class="card-title">Materials Statics</span></h5> --}}
-
-                        {{-- <div id="trafficChart" style="min-height: 400px;" class="echart"></div> --}}
-
-                        <script>
-                        var resources = {!! $resources !!}
-                        var notes = {!! $notes !!}
-                        var users = {!! $users !!}
-                        var subscribers = {!! $subscribers !!}
-
-
-                        var totalResources = resources.length
-                        var totalNotes = notes.length
-                        var totalUsers = users.length
-                        var totalSubscribers = subscribers.length
-
-
-                            document.addEventListener("DOMContentLoaded", () => {
-                                echarts.init(document.querySelector("#trafficChart")).setOption({
-                                    tooltip: {
-                                        trigger: 'item'
-                                    }
-                                    , legend: {
-                                        top: '5%'
-                                        , left: 'center'
-                                    }
-                                    , series: [{
-                                        name: 'Number of'
-                                        , type: 'pie'
-                                        , radius: ['40%', '70%']
-                                        , avoidLabelOverlap: false
-                                        , label: {
-                                            show: false
-                                            , position: 'center'
-                                        }
-                                        , emphasis: {
-                                            label: {
-                                                show: true
-                                                , fontSize: '18'
-                                                , fontWeight: 'bold'
-                                            }
-                                        }
-                                        , labelLine: {
-                                            show: false
-                                        }
-                                        , data: [{
-                                                value: totalResources
-                                                , name: 'Resources'
-                                            }
-                                            , {
-                                                value: totalNotes
-                                                , name: 'Notes'
-                                            }
-                                            , {
-                                                value: totalUsers
-                                                , name: 'Users'
-                                            }
-                                            , {
-                                                value: totalSubscribers
-                                                , name: 'Subscribers'
-                                            }
-                                            ,
-                                        ]
-                                    }]
-                                });
-                            });
-
-                        </script>
-
+                        @if($recentResources->count() > 0)
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Type</th>
+                                        {{-- <th scope="col">Accessed On</th> --}}
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($recentResources as $interaction)
+                                        @php
+                                            $resource = $interaction->resource;
+                                        @endphp
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $resource->title ?? 'Deleted Resource' }}</td>
+                                            <td>
+                                                @if($resource)
+                                                    @if($resource->resource_type == 'PastPaper')
+                                                        <span class="badge bg-success">Past Paper</span>
+                                                    @elseif($resource->resource_type == 'ReferenceBook')
+                                                        <span class="badge bg-info">Reference Book</span>
+                                                    @else
+                                                        <span class="badge bg-warning">{{ $resource->resource_type ?? 'Other' }}</span>
+                                                    @endif
+                                                @else
+                                                    <span class="badge bg-secondary">N/A</span>
+                                                @endif
+                                            </td>
+                                            {{-- <td>
+                                                {{ $interaction->created_at ? $interaction->created_at->format('d M Y, h:i A') : 'N/A' }}
+                                            </td> --}}
+                                            <td>
+                                                @if($resource)
+                                                    <a href="{{ route('notes.show', encrypt($resource->id)) }}" class="btn btn-sm btn-primary">
+                                                        <i class="bi bi-eye"></i> View
+                                                    </a>
+                                                @else
+                                                    <span class="text-muted">Unavailable</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="alert alert-info text-center">
+                                You haven't accessed any resources yet. Start exploring our <a href="{{ route('materials') }}">Materials</a> section!
+                            </div>
+                        @endif
                     </div>
-                </div><!-- End Materials Statics -->
+                </div>
+            </div><!-- End Recent Resources -->
 
-            </div><!-- End Right side columns -->
+            <!-- Recent Messages -->
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Recent Messages</h5>
+
+                        @if($recentMessages->count() > 0)
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">Sent On</th>
+                                        <th scope="col">Action</th> <!-- NEW -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($recentMessages as $message)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ Str::limit($message->message, 60) }}</td>
+                                            <td>{{ $message->created_at->format('d M Y, h:i A') }}</td>
+                                            <td>
+                                                {{-- <a href="{{ route('chat.conversation', $message->conversation_id) }}"
+                                                   class="btn btn-sm btn-info">
+                                                    <i class="bi bi-eye"></i> Read
+                                                </a> --}}
+                                                <a href="{{ route('chat.conversation', $message->conversation_id) }}" class="btn btn-sm btn-info">
+                                                    <i class="bi bi-eye"></i> Read
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="alert alert-info text-center">
+                                You haven't sent any messages yet.
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>

@@ -9,6 +9,8 @@ class ForumPost extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['thread_id', 'user_id', 'content'];
+
     public function thread()
     {
         return $this->belongsTo(ForumThread::class, 'thread_id');

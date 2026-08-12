@@ -1,157 +1,228 @@
 @extends('layouts.root')
+
 @section('title', 'Device Stats')
+
 @section('content')
 <main id="main" class="main">
+
     <div class="pagetitle">
-        <h1>Device Stats</h1>
+        <h1>Device Statistics</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                <li class="breadcrumb-item active">Device Stats</li>
+            </ol>
+        </nav>
     </div>
 
     <section class="section">
+
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Sessions</h5>
+                        <h2 class="text-primary">{{ $deviceList->total() }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Unique Devices</h5>
+                        <h2 class="text-success">{{ $devices->count() }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Most Common</h5>
+                        <h2 class="text-warning">{{ $devices->first()->device_group ?? 'N/A' }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grouped Stats -->
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Users by Device Group</h5>
 
-                @if(count($devices) > 0)
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <canvas id="barChart" style="max-width: 400px; max-height: 400px;"></canvas>
+                @if($devices->count() > 0)
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <canvas id="barChart" style="height: 300px; width: 100%;"></canvas>
+                        </div>
+                        <div class="col-lg-6">
+                            <canvas id="devicePieChart" style="height: 300px; width: 100%;"></canvas>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <canvas id="devicePieChart" style="max-width: 400px; max-height: 400px;"></canvas>
-                    </div>
-                </div>
 
-                <table class="table table-bordered mt-4">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Device Group</th>
-                            <th>User Count</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($devices as $index => $device)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $device->device_group ?? 'Unknown' }}</td>
-                            <td>{{ $device->user_count }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Device Group</th>
+                                    <th>User Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($devices as $index => $device)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $device->device_group ?? 'Unknown' }}</td>
+                                    <td>{{ $device->user_count }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 @else
-                <p class="text-muted">No device data available.</p>
+                    <div class="alert alert-info mt-3">No device data available yet.</div>
                 @endif
             </div>
         </div>
 
-        {{-- Filter / Search for detailed devices --}}
+        <!-- Detailed Device List -->
         <div class="card mt-5">
             <div class="card-body">
-                <h5 class="card-title">Detailed Device List</h5>
+                <h5 class="card-title">Detailed Device Sessions</h5>
 
-                <form method="GET" action="{{ route('device.stats') }}" class="mb-3 row g-2">
+                <!-- Filters -->
+                <form method="GET" action="{{ route('reports.device-stats') }}" class="row g-2 mb-3">
                     <div class="col-md-3">
-                        <input type="text" name="user_id" value="{{ request('user_id') }}" placeholder="Search User ID" class="form-control">
+                        <input type="text" name="user_id" value="{{ request('user_id') }}" placeholder="Filter by User ID" class="form-control">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" name="device" value="{{ request('device') }}" placeholder="Search Device" class="form-control">
+                        <input type="text" name="device" value="{{ request('device') }}" placeholder="Filter by Device" class="form-control">
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary w-100">Filter</button>
+                        <button type="submit" class="btn btn-primary w-100"><i class="bi bi-search"></i> Filter</button>
                     </div>
                     <div class="col-md-2">
-                        <a href="{{ route('device.stats') }}" class="btn btn-secondary w-100">Reset</a>
+                        <a href="{{ route('reports.device-stats') }}" class="btn btn-secondary w-100"><i class="bi bi-arrow-counterclockwise"></i> Reset</a>
                     </div>
                 </form>
 
-                @if(count($deviceList) > 0)
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>User ID</th>
-                                <th>Device</th>
-                                <th>Accessed At</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($deviceList as $index => $session)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $session->user_id }}</td>
-                                <td>{{ $session->device ?? 'Unknown' }}</td>
-                                <td>{{ $session->created_at }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                @if($deviceList->count() > 0)
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>User ID</th>
+                                    <th>Device</th>
+                                    <th>Login Time</th>
+                                    <th>Duration (sec)</th>
+                                    <th>Action</th>  <!-- NEW COLUMN -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($deviceList as $index => $session)
+                                <tr>
+                                    <td>{{ $deviceList->firstItem() + $index }}</td>
+                                    <td>{{ $session->user_id }}</td>
+                                    <td>{{ $session->device ?? 'Unknown' }}</td>
+                                    <td>{{ $session->login_time ? \Carbon\Carbon::parse($session->login_time)->format('d M Y, H:i:s') : 'N/A' }}</td>
+                                    <td>{{ $session->duration ?? '—' }}</td>
+                                    <td>
+                                        <form action="{{ route('user-sessions.destroy', $session->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this session?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete Session">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="text-muted small">
+                            Showing {{ $deviceList->firstItem() }} to {{ $deviceList->lastItem() }} of {{ $deviceList->total() }} results
+                        </div>
+                        <div>
+                            {{ $deviceList->onEachSide(1)->links('pagination::bootstrap-5') }}
+                        </div>
+                    </div>
                 @else
-                <p class="text-muted">No detailed device data available.</p>
+                    <div class="alert alert-warning">No detailed device data found.</div>
                 @endif
             </div>
         </div>
+
     </section>
 </main>
 
+<!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const labels = @json($labels);
-    const data = @json($data);
+    document.addEventListener('DOMContentLoaded', function() {
+        const labels = @json($labels);
+        const data = @json($data);
 
-    // Horizontal Bar Chart
-    const barCtx = document.getElementById('barChart').getContext('2d');
-    new Chart(barCtx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'User Count',
-                data: data,
-                backgroundColor: [
-                    '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#6f42c1', '#20c997', '#fd7e14'
-                ],
-                borderColor: '#4e73df',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            indexAxis: 'y', // horizontal
-            maintainAspectRatio: false,
-            scales: {
-                x: { beginAtZero: true, ticks: { stepSize: 1 } }
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return context.label + ': ' + context.raw + ' users';
-                        }
+        if (labels.length > 0) {
+            // Horizontal Bar Chart
+            const barCtx = document.getElementById('barChart').getContext('2d');
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'User Count',
+                        data: data,
+                        backgroundColor: [
+                            '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e',
+                            '#e74a3b', '#6f42c1', '#20c997', '#fd7e14'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                    },
+                    plugins: {
+                        legend: { display: false }
                     }
                 }
-            }
-        }
-    });
+            });
 
-    // Pie Chart
-    const pieCtx = document.getElementById('devicePieChart').getContext('2d');
-    new Chart(pieCtx, {
-        type: 'pie',
-        data: {
-            labels: {!! json_encode($devices->pluck('device_group')) !!},
-            datasets: [{
-                data: {!! json_encode($devices->pluck('user_count')) !!},
-                backgroundColor: [
-                    '#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1', '#20c997', '#fd7e14', '#6610f2'
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { position: 'bottom' } }
+            // Pie Chart
+            const pieCtx = document.getElementById('devicePieChart').getContext('2d');
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                            '#007bff', '#28a745', '#ffc107', '#dc3545',
+                            '#6f42c1', '#20c997', '#fd7e14', '#6610f2'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        } else {
+            document.getElementById('barChart').parentElement.innerHTML = '<p class="text-muted">No chart data available.</p>';
+            document.getElementById('devicePieChart').parentElement.innerHTML = '<p class="text-muted">No chart data available.</p>';
         }
     });
 </script>

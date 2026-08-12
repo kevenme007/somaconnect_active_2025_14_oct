@@ -8,26 +8,18 @@ use Illuminate\Http\Request;
 
 class ForumPostController extends Controller
 {
-    public function store(Request $request, ForumThread $forumThread)
+    public function store(Request $request, ForumThread $thread)
     {
         $request->validate([
             'content' => 'required|string',
         ]);
 
         ForumPost::create([
-            'thread_id' => $forumThread->id,
-            'user_id' => auth()->id(),
-            'content' => $request->content,
+            'thread_id' => $thread->id,
+            'user_id'   => auth()->id(),
+            'content'   => $request->content,
         ]);
 
-        return redirect()->route('forums.show', $forumThread)->with('success', 'Reply posted.');
-    }
-
-    public function destroy(ForumPost $forumPost)
-    {
-        $this->authorize('delete', $forumPost);
-        $forumPost->delete();
-
-        return back()->with('success', 'Post deleted.');
+        return redirect()->route('forum.threads.show', $thread)->with('success', 'Reply added.');
     }
 }

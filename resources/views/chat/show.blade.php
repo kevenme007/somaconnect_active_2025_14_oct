@@ -29,9 +29,6 @@
             <form id="chat-form" class="d-flex gap-2">
                 @csrf
                 <input type="text" id="message" name="message" placeholder="Type your message..." class="form-control" autocomplete="off" required>
-                <button type="button" id="emoji-trigger" class="btn btn-light">
-                    😊
-                </button>
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-send"></i> Send
                 </button>
@@ -97,14 +94,14 @@
         });
 
         // Emoji picker
-        const button = document.querySelector('#emoji-trigger');
-        const picker = new EmojiButton();
+        // const button = document.querySelector('#emoji-trigger');
+        // const picker = new EmojiButton();
 
-        picker.on('emoji', emoji => {
-            const input = document.querySelector('#message');
-            input.value += emoji;
-            input.focus();
-        });
+        // picker.on('emoji', emoji => {
+        //     const input = document.querySelector('#message');
+        //     input.value += emoji;
+        //     input.focus();
+        // });
 
         button.addEventListener('click', () => picker.togglePicker(button));
     });

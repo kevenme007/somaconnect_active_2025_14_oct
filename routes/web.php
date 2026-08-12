@@ -1,27 +1,29 @@
 <?php
 
-use App\Models\User;
-use App\Models\School;
-use App\Models\Resource;
-use App\Models\Subscriber;
-use App\Models\UserSession;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\ForumPostController;
+use App\Http\Controllers\ForumThreadController;
+use App\Http\Controllers\OperationsController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReadingHistoryController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\TutorController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\ContentController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SupportController;
-use App\Http\Controllers\BookmarkController;
-use App\Http\Controllers\ResourceController;
-use App\Http\Controllers\ForumPostController;
-use App\Http\Controllers\OperationsController;
-use App\Http\Controllers\ForumThreadController;
-use App\Http\Controllers\ReadingHistoryController;
+use App\Models\Message;
+use App\Models\Resource;
+use App\Models\ResourceInteraction;
+use App\Models\School;
+use App\Models\Subscriber;
+use App\Models\User;
+use App\Models\UserSession;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,6 +116,7 @@ Route::prefix('admin/reports')->middleware(['auth', 'is_admin'])->group(function
     Route::get('/active-users', [ReportController::class, 'activeUsers'])->name('reports.activeUsers');
     Route::get('/time-spent', [ReportController::class, 'totalTimeSpent'])->name('reports.timeSpent');
     Route::get('/usage-stats', [ReportController::class, 'usageStats'])->name('reports.usageStats');
+    Route::get('/reports/user-system', [ReportController::class, 'userSystemReport'])->name('reports.user-system');
 });
 
 
@@ -224,19 +227,70 @@ Route::get('/teacher-dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard.teacher');
 
 Route::get('/student-dashboard', function () {
-    $schools = School::all();
+    $user = auth()->user();
+    $studentGrade = $user->profile?->classroom; // e.g., 'Form 1', 'Form 2'
 
-    $textBooks   = Resource::all();
-    $resources   = Resource::all();
-    $notes       = Resource::all();
-    $pastPapers  = Resource::all();
-    $students    = Resource::all();
-    $schools     = School::all();
-    $subscribers = Subscriber::all();
+    // Extract grade number (1-6) from classroom string
+    $gradeNumber = null;
+    if ($studentGrade) {
+        preg_match('/\d+/', $studentGrade, $matches);
+        $gradeNumber = $matches[0] ?? null;
+    }
 
-    $users = User::all();
+    // Fetch resources for the student's grade level (if set)
+    $resourcesQuery = Resource::where('status', 'approved');
+    if ($gradeNumber) {
+        $resourcesQuery->where('grade_level', $gradeNumber);
+    }
+    $allResources = $resourcesQuery->get();
 
-    return view('student_dashboard', compact('schools', 'notes', 'pastPapers', 'students', 'schools', 'users', 'textBooks', 'resources', 'subscribers'));
+    $pastPapers = $allResources->where('resource_type', 'PastPaper');
+    $referenceBooks = Resource::where('resource_type', 'ReferenceBook');
+    $notes = $allResources->where('resource_type', 'Notes'); // adjust as needed
+
+    // Recent resource interactions
+    $recentResources = ResourceInteraction::where('user_id', $user->id)
+        ->with('resource')
+        ->orderBy('created_at', 'desc')
+        ->take(10)
+        ->get();
+
+    // Recent messages sent by the student
+    $recentMessages = Message::where('receiver_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->take(5)
+        ->get();
+
+    // Count unread messages (if the user is the receiver)
+    // Since we don't have a receiver_id, we'll count messages where seen_at is null and the student is NOT the sender
+    // This is a fallback – in a real system, you'd have a proper participants table.
+    // $unreadMessages = Message::whereNull('seen_at')
+    //     ->where('sender_id', '!=', $user->id)
+    //     ->count();
+
+    // $unreadMessages = Message::whereNull('seen_at')
+    //     ->whereHas('conversation', function ($q) use ($user) {
+    //         $q->where('user_one_id', $user->id)
+    //             ->orWhere('user_two_id', $user->id);
+    //     })
+    //     ->where('sender_id', '!=', $user->id)
+    //     ->count();
+
+    $unreadMessages = Message::whereNull('seen_at')
+        ->where('receiver_id', $user->id)
+        ->count();
+
+        // dd($unreadMessages);
+
+    return view('student_dashboard', compact(
+        'pastPapers',
+        'referenceBooks',
+        'notes',
+        'allResources',
+        'recentResources',
+        'recentMessages',
+        'unreadMessages'
+    ));
 })->middleware(['auth', 'verified'])->name('dashboard.student');
 
 // Resource Library
@@ -259,13 +313,28 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Forum Threads and Posts
-Route::prefix('forum')->name('forum.')->group(function () {
-    Route::get('threads', [ForumThreadController::class, 'index'])->name('threads.index');
-    Route::get('threads/create', [ForumThreadController::class, 'create'])->name('threads.create');
-    Route::post('threads', [ForumThreadController::class, 'store'])->name('threads.store');
-    Route::get('threads/{thread}', [ForumThreadController::class, 'show'])->name('threads.show');
+// Route::prefix('forum')->name('forum.')->group(function () {
+    // Route::get('threads', [ForumThreadController::class, 'index'])->name('threads.index');
+    // Route::get('threads/create', [ForumThreadController::class, 'create'])->name('threads.create');
+    // Route::post('threads', [ForumThreadController::class, 'store'])->name('threads.store');
+    // Route::get('threads/{thread}', [ForumThreadController::class, 'show'])->name('threads.show');
 
-    Route::post('threads/{thread}/posts', [ForumPostController::class, 'store'])->name('posts.store');
+    // Route::post('threads/{thread}/posts', [ForumPostController::class, 'store'])->name('posts.store');
+
+
+//     Route::get('/', [ForumThreadController::class, 'index'])->name('threads.index');
+//     Route::get('/create', [ForumThreadController::class, 'create'])->name('threads.create');
+//     Route::post('/', [ForumThreadController::class, 'store'])->name('threads.store');
+//     Route::get('/{thread}', [ForumThreadController::class, 'show'])->name('threads.show');
+//     Route::post('/{thread}/posts', [ForumPostController::class, 'store'])->name('posts.store');
+// });
+
+Route::prefix('forum')->name('forum.')->group(function () {
+    Route::get('/', [ForumThreadController::class, 'index'])->name('threads.index');
+    Route::get('/create', [ForumThreadController::class, 'create'])->name('threads.create');
+    Route::post('/', [ForumThreadController::class, 'store'])->name('threads.store');
+    Route::get('/{thread}', [ForumThreadController::class, 'show'])->name('threads.show');
+    Route::post('/{thread}/posts', [ForumPostController::class, 'store'])->name('posts.store');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -293,6 +362,7 @@ Route::prefix('reports')->middleware(['auth'])->group(function () {
 
     Route::get('/admin/device-stats', [ReportController::class, 'deviceStats'])
         ->name('device.stats');
+    Route::delete('/user-sessions/{session}', [ReportController::class, 'destroy'])->name('user-sessions.destroy');
 });
 
 
@@ -406,6 +476,9 @@ Route::put('/edit-subject/{subject}', '\App\Http\Controllers\SubjectController@u
 Route::delete('/delete-subject/{subject}', '\App\Http\Controllers\SubjectController@destroy')->middleware(['auth', 'verified'])->name('subjects.delete');
 
 Route::get('/faq', '\App\Http\Controllers\OperationsController@faq')->name('faq');
+
+// In web.php
+Route::get('/chat/conversation/{conversationId}', [ChatController::class, 'showConversation'])->name('chat.conversation');
 
 //################### MANAGE LOGOUT ####################
 Route::get('logout', '\App\Http\Controllers\UsersController@logout');

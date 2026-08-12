@@ -4,10 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OpenAI\Enums\Moderations\Category;
 
 class ForumThread extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['user_id', 'school_id', 'title', 'body'];
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
 
 
     public function category()

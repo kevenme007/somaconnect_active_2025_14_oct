@@ -23,49 +23,86 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
         $user = Auth::user();
 
-        // 🆕 Check profile completion status
+        // Profile completion check
         if (! $user->profile_completed) {
-            // Redirect user to complete their profile
             return redirect()->route('profile.edit')->with('info', 'Please complete your profile to continue.');
         }
 
-        // Redirect based on role
-        // switch ($user->role) {
-        //     case 'admin':
-        //         return redirect()->route('dashboard');
-        //     case 'teacher':
-        //         return redirect()->route('dashboard.teacher');
-        //     case 'student':
-        //         return redirect()->route('dashboard.student');
-        //     default:
-        //         return redirect()->route('home');
-        // }
-
+        // Create session entry with device (user agent)
         UserSession::create([
-            'user_id'    => auth()->id(),
+            'user_id'    => $user->id,
             'login_time' => now(),
+            'device'     => $request->userAgent(), 
         ]);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
+    // public function store(LoginRequest $request): RedirectResponse
+    // {
+    //     $request->authenticate();
+
+    //     $request->session()->regenerate();
+
+    //     $user = Auth::user();
+
+    //     if (! $user->profile_completed) {
+    //         return redirect()->route('profile.edit')->with('info', 'Please complete your profile to continue.');
+    //     }
+
+    //     UserSession::create([
+    //         'user_id'    => auth()->id(),
+    //         'login_time' => now(),
+    //     ]);
+
+    //     return redirect()->intended(RouteServiceProvider::HOME);
+    // }
+
     /**
      * Destroy an authenticated session.
      */
+    // public function destroy(Request $request): RedirectResponse
+    // {
+    //     Auth::guard('web')->logout();
+
+    //     $request->session()->invalidate();
+
+    //     $request->session()->regenerateToken();
+
+    //     return redirect('/');
+    // }
+
+
+
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+
+        if ($user) {
+            // Find the latest open session for this user and update logout time & duration
+            $session = UserSession::where('user_id', $user->id)
+                ->whereNull('logout_time')
+                ->latest('login_time')
+                ->first();
+
+            if ($session) {
+                $session->update([
+                    'logout_time' => now(),
+                    'duration'    => now()->diffInSeconds($session->login_time),
+                ]);
+            }
+        }
+
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

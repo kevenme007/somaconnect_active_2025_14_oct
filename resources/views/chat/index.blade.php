@@ -7,9 +7,12 @@
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="fw-bold">Start a Conversation</h2>
-            <a href="/" class="btn btn-outline-primary">
-                <i class="bi bi-house-door"></i> Home
-            </a>
+            <div>
+                <form method="GET" action="{{ route('chat.index') }}" class="d-flex">
+                    <input type="text" name="search" class="form-control me-2" placeholder="Search by name or email..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-outline-primary"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
         </div>
 
         <div class="row">

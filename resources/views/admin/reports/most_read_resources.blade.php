@@ -1,5 +1,7 @@
 @extends('layouts.root')
+
 @section('title', 'Most Read Resources')
+
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
@@ -23,8 +25,8 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $resource->title }}</td>
-                                <td>{{ ucfirst($resource->type) }}</td>
-                                <td>{{ $resource->document_reads_count }}</td>
+                                <td>{{ ucfirst($resource->resource_type ?? 'N/A') }}</td>
+                                <td>{{ $resource->views ?? 0 }}</td>
                             </tr>
                         @endforeach
                     </tbody>
