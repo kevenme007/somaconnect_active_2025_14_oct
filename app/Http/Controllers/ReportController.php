@@ -283,28 +283,31 @@ class ReportController extends Controller
         ));
     }
 
+
     public function userSystemReport()
     {
         $today = Carbon::today();
         $startOfMonth = Carbon::now()->startOfMonth();
         $threeMonthsAgo = Carbon::now()->subMonths(3);
 
-        // Users who logged in today
+        // Logged Today
         $loggedToday = User::whereHas('sessions', function ($q) use ($today) {
             $q->whereDate('login_time', $today);
         })->get();
 
-        // Users who logged in this month
+        // Logged This Month
         $loggedThisMonth = User::whereHas('sessions', function ($q) use ($startOfMonth) {
             $q->whereDate('login_time', '>=', $startOfMonth);
         })->get();
 
-        // Users with last login older than 3 months (using sessions)
-        $notLoggedThreeMonths = User::whereHas('sessions', function ($q) use ($threeMonthsAgo) {
-            $q->whereDate('login_time', '<', $threeMonthsAgo);
-        })->get();
+        // Not Logged in 3 Months (users who have at least one session, but none in the last 3 months)
+        $notLoggedThreeMonths = User::whereHas('sessions') // has at least one session
+            ->whereDoesntHave('sessions', function ($q) use ($threeMonthsAgo) {
+                $q->whereDate('login_time', '>=', $threeMonthsAgo);
+            })
+            ->get();
 
-        // Users who have never logged in (no sessions)
+        // Never Logged In (no sessions at all)
         $neverLoggedIn = User::whereDoesntHave('sessions')->get();
 
         $countToday = $loggedToday->count();
@@ -323,6 +326,43 @@ class ReportController extends Controller
             'countNever'
         ));
     }
+
+    // public function userSystemReport()
+    // {
+    //     $today = Carbon::today();
+    //     $startOfMonth = Carbon::now()->startOfMonth();
+    //     $threeMonthsAgo = Carbon::now()->subMonths(3);
+
+    //     $loggedToday = User::whereHas('sessions', function ($q) use ($today) {
+    //         $q->whereDate('login_time', $today);
+    //     })->get();
+
+    //     $loggedThisMonth = User::whereHas('sessions', function ($q) use ($startOfMonth) {
+    //         $q->whereDate('login_time', '>=', $startOfMonth);
+    //     })->get();
+
+    //     $notLoggedThreeMonths = User::whereHas('sessions', function ($q) use ($threeMonthsAgo) {
+    //         $q->whereDate('login_time', '<', $threeMonthsAgo);
+    //     })->get();
+
+    //     $neverLoggedIn = User::whereDoesntHave('sessions')->get();
+
+    //     $countToday = $loggedToday->count();
+    //     $countMonth = $loggedThisMonth->count();
+    //     $countThreeMonths = $notLoggedThreeMonths->count();
+    //     $countNever = $neverLoggedIn->count();
+
+    //     return view('admin.reports.user_system_report', compact(
+    //         'loggedToday',
+    //         'loggedThisMonth',
+    //         'notLoggedThreeMonths',
+    //         'neverLoggedIn',
+    //         'countToday',
+    //         'countMonth',
+    //         'countThreeMonths',
+    //         'countNever'
+    //     ));
+    // }
 
     public function destroy(UserSession $session)
     {
