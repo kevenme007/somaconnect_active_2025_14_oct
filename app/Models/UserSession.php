@@ -10,6 +10,10 @@ class UserSession extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $casts = [
+        'login_time' => 'datetime',
+    ];
+
        protected $fillable = [
         'user_id',
         'login_time',

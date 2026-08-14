@@ -12,7 +12,8 @@
                     <div class="skeleton-header mb-4">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <div class="skeleton-loader me-3" style="width: 50px; height: 50px; border-radius: 15px;"></div>
+                                <div class="skeleton-loader me-3" style="width: 50px; height: 50px; border-radius: 15px;">
+                                </div>
                                 <div>
                                     <div class="skeleton-loader mb-2" style="width: 250px; height: 30px;"></div>
                                     <div class="skeleton-loader" style="width: 350px; height: 20px;"></div>
@@ -27,7 +28,8 @@
                         @for ($i = 1; $i <= 8; $i++)
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="skeleton-material-card">
-                                    <div class="skeleton-loader mb-3" style="height: 250px; width: 100%; border-radius: 20px;"></div>
+                                    <div class="skeleton-loader mb-3"
+                                        style="height: 250px; width: 100%; border-radius: 20px;"></div>
                                     <div class="p-3">
                                         <div class="skeleton-loader mb-2" style="width: 80px; height: 18px;"></div>
                                         <div class="skeleton-loader mb-2" style="width: 160px; height: 22px;"></div>
@@ -56,7 +58,8 @@
                                 </div>
                                 <div>
                                     <h4 class="text-black mb-0 fw-bold">All Learning Materials</h4>
-                                    <p class="text-black-50 mb-0 small">Browse our complete collection of educational resources</p>
+                                    <p class="text-black-50 mb-0 small">Browse our complete collection of educational
+                                        resources</p>
                                 </div>
                             </div>
                             <div>
@@ -84,7 +87,8 @@
                         </div>
                         <div class="col-md-4">
                             <a href="{{ route('referencebooks') }}" class="access-card">
-                                <div class="access-icon" style="background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);">
+                                <div class="access-icon"
+                                    style="background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);">
                                     <i class="fas fa-book"></i>
                                 </div>
                                 <div>
@@ -96,7 +100,8 @@
                         </div>
                         <div class="col-md-4">
                             <a href="{{ route('resources.most_read') }}" class="access-card">
-                                <div class="access-icon" style="background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);">
+                                <div class="access-icon"
+                                    style="background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);">
                                     <i class="fas fa-fire"></i>
                                 </div>
                                 <div>
@@ -113,31 +118,32 @@
                         <form action="{{ route('materials.search') }}" method="GET" class="search-form">
                             <div class="search-wrapper">
                                 <i class="fas fa-search search-icon"></i>
-                                <input type="text" name="query" class="search-input-large" placeholder="Search by title, author, or subject..." value="{{ request('query') }}">
+                                <input type="text" name="query" class="search-input-large text-black" color="black"
+                                    placeholder="Search by title, author, or subject..." value="{{ request('query') }}">
                                 <button type="submit" class="search-btn">Search</button>
                             </div>
                         </form>
                     </div>
 
                     <!-- Materials Grid -->
-                    @if($textBooks->count() > 0)
+                    @if ($textBooks->count() > 0)
                         <div class="materials-grid">
                             <div class="row g-4">
-                                @foreach($textBooks as $tb)
+                                @foreach ($textBooks as $tb)
                                     <div class="col-lg-3 col-md-4 col-sm-6 material-item">
                                         <div class="material-card">
                                             <div class="material-image-wrapper">
                                                 <a href="{{ route('notes.show', encrypt($tb->id)) }}" class="material-link">
                                                     <img class="material-image"
-                                                         src="{{ asset('storage/' . $tb->image_path) }}"
-                                                         alt="{{ $tb->title }}">
+                                                        src="{{ asset('storage/' . $tb->image_path) }}"
+                                                        alt="{{ $tb->title }}">
                                                     <div class="material-overlay">
                                                         <span class="view-resource-btn">
                                                             <i class="fas fa-eye me-2"></i>View
                                                         </span>
                                                     </div>
                                                 </a>
-                                                @if($tb->subject)
+                                                @if ($tb->subject)
                                                     <span class="subject-badge">{{ $tb->subject->name }}</span>
                                                 @endif
                                                 <span class="type-badge {{ strtolower($tb->resource_type) }}">
@@ -147,14 +153,16 @@
                                             <div class="material-content">
                                                 <h5 class="material-category">{{ $tb->subject->name ?? 'General' }}</h5>
                                                 <h3 class="material-title">
-                                                    <a href="{{ route('notes.show', encrypt($tb->id)) }}">{{ Str::limit($tb->title, 40) }}</a>
+                                                    <a
+                                                        href="{{ route('notes.show', encrypt($tb->id)) }}">{{ Str::limit($tb->title, 40) }}</a>
                                                 </h3>
                                                 <div class="material-meta">
                                                     <span class="material-author">
                                                         <i class="fas fa-user me-1"></i>{{ $tb->author ?? 'Unknown' }}
                                                     </span>
                                                     <span class="material-grade">
-                                                        <i class="fas fa-graduation-cap me-1"></i>Form {{ $tb->grade_level ?? 'N/A' }}
+                                                        <i class="fas fa-graduation-cap me-1"></i>Form
+                                                        {{ $tb->grade_level ?? 'N/A' }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -479,12 +487,14 @@
             margin-top: auto;
         }
 
-        .material-author, .material-grade {
+        .material-author,
+        .material-grade {
             display: flex;
             align-items: center;
         }
 
-        .material-author i, .material-grade i {
+        .material-author i,
+        .material-grade i {
             width: 16px;
             color: #6cbad9;
         }
@@ -517,15 +527,20 @@
         }
 
         .skeleton-loader {
-            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
             border-radius: 4px;
         }
 
         @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         /* Responsive */
@@ -559,6 +574,11 @@
             .search-btn {
                 width: 100%;
             }
+        }
+
+        .search-input-large::placeholder {
+            color: black;
+            opacity: 1;
         }
     </style>
 

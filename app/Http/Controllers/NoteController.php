@@ -20,28 +20,25 @@ class NoteController extends Controller
     {
 
         try {
-            // Decrypt the ID
             $decryptedId = decrypt($id);
         } catch (DecryptException $e) {
-            // If decryption fails (tampered URL), show 404
             abort(404);
         }
         $resource  = Resource::findOrFail($decryptedId);
         $subjectId = $resource->subject_id;
 
-        // Get all resources in this category
         $categoryResources = Resource::where('subject_id', $subjectId)->orderBy('id')->get();
 
-        // Find current index
+
         $currentIndex = $categoryResources->search(function ($res) use ($resource) {
             return $res->id === $resource->id;
         });
 
-        // Find previous and next
         $prevResource = $currentIndex > 0 ? $categoryResources[$currentIndex - 1] : null;
         $nextResource = $currentIndex < $categoryResources->count() - 1 ? $categoryResources[$currentIndex + 1] : null;
 
-        $relatedResources = Resource::all();
+        $currentResourceType = $resource->resource_type;
+        $relatedResources = Resource::where('resource_type', $currentResourceType)->get();
         if (auth()->check()) {
             $data = ResourceInteraction::create([
                 'user_id'          => auth()->id(),
