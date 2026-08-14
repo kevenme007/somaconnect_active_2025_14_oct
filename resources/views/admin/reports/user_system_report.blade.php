@@ -38,17 +38,159 @@
                 </ul>
 
                 <div class="tab-content mt-3" id="loginTabsContent">
+                    <!-- Logged Today -->
                     <div class="tab-pane fade show active" id="today" role="tabpanel">
-                        @include('admin.reports._user_table', ['users' => $loggedToday])
+                        <div class="table-responsive">
+                            @if($loggedToday->count() > 0)
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Last Login</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($loggedToday as $index => $user)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ ucfirst($user->role) }}</td>
+                                            <td>
+                                                @php
+                                                    $lastLogin = $user->sessions()->latest('login_time')->first();
+                                                @endphp
+                                                @if($lastLogin)
+                                                    {{ $lastLogin->login_time->format('d M Y, h:i A') }}
+                                                @else
+                                                    Never
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p class="text-muted text-center">No users found.</p>
+                            @endif
+                        </div>
                     </div>
+
+                    <!-- Logged This Month -->
                     <div class="tab-pane fade" id="month" role="tabpanel">
-                        @include('admin.reports._user_table', ['users' => $loggedThisMonth])
+                        <div class="table-responsive">
+                            @if($loggedThisMonth->count() > 0)
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Last Login</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($loggedThisMonth as $index => $user)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ ucfirst($user->role) }}</td>
+                                            <td>
+                                                @php
+                                                    $lastLogin = $user->sessions()->latest('login_time')->first();
+                                                @endphp
+                                                @if($lastLogin)
+                                                    {{ $lastLogin->login_time->format('d M Y, h:i A') }}
+                                                @else
+                                                    Never
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p class="text-muted text-center">No users found.</p>
+                            @endif
+                        </div>
                     </div>
+
+                    <!-- Not Logged 3 Months -->
                     <div class="tab-pane fade" id="three-month" role="tabpanel">
-                        @include('admin.reports._user_table', ['users' => $notLoggedThreeMonths])
+                        <div class="table-responsive">
+                            @if($notLoggedThreeMonths->count() > 0)
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Last Login</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($notLoggedThreeMonths as $index => $user)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ ucfirst($user->role) }}</td>
+                                            <td>
+                                                @php
+                                                    $lastLogin = $user->sessions()->latest('login_time')->first();
+                                                @endphp
+                                                @if($lastLogin)
+                                                    {{ $lastLogin->login_time->format('d M Y, h:i A') }}
+                                                @else
+                                                    Never
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p class="text-muted text-center">No users found.</p>
+                            @endif
+                        </div>
                     </div>
+
+                    <!-- Never Logged In -->
                     <div class="tab-pane fade" id="never-login" role="tabpanel">
-                        @include('admin.reports._user_table', ['users' => $neverLoggedIn])
+                        <div class="table-responsive">
+                            @if($neverLoggedIn->count() > 0)
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Last Login</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($neverLoggedIn as $index => $user)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ ucfirst($user->role) }}</td>
+                                            <td>Never</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p class="text-muted text-center">No users found.</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
